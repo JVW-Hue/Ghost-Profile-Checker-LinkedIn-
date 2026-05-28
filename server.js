@@ -63,6 +63,9 @@ function validateLicenseKey(key) {
 }
 
 async function getPayPalAccessToken() {
+  if (!PAYPAL_CLIENT_ID || !PAYPAL_CLIENT_SECRET) {
+    throw new Error('PayPal credentials not configured');
+  }
   const auth = Buffer.from(`${PAYPAL_CLIENT_ID}:${PAYPAL_CLIENT_SECRET}`).toString('base64');
   const res = await fetch(`${PAYPAL_API}/v1/oauth2/token`, {
     method: 'POST',
@@ -73,7 +76,10 @@ async function getPayPalAccessToken() {
     body: 'grant_type=client_credentials',
   });
   const data = await res.json();
-  if (!data.access_token) throw new Error('Failed to get PayPal access token');
+  if (!data.access_token) {
+    console.error('PayPal token error:', JSON.stringify(data));
+    throw new Error('PayPal rejected credentials: ' + (data.error_description || data.error || 'Unknown'));
+  }
   return data.access_token;
 }
 
