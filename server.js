@@ -95,10 +95,14 @@ app.post('/api/create-order', async (req, res) => {
       }),
     });
     const order = await resOrder.json();
+    if (!order.id) {
+      console.error('PayPal create-order response:', JSON.stringify(order));
+      return res.status(500).json({ error: 'PayPal: ' + (order.message || order.error || 'Unknown error') });
+    }
     res.json({ id: order.id });
   } catch (err) {
-    console.error('Create order error:', err);
-    res.status(500).json({ error: 'Failed to create order' });
+    console.error('Create order error:', err.message);
+    res.status(500).json({ error: 'Failed to create order: ' + err.message });
   }
 });
 
@@ -138,7 +142,25 @@ app.post('/api/capture-order', async (req, res) => {
 app.post('/api/validate-key', (req, res) => {
   const { key } = req.body;
   if (!key) return res.status(400).json({ valid: false, error: 'Missing key' });
-  res.json({ valid: validateLicenseKey(key) });
+  const valid = validateLicenseKey(key);
+  const licenses = loadLicenses();
+  const match = licenses.find(l => l.key.replace(/-/g, '').toLowerCase() === key.replace(/-/g, '').toLowerCase());
+  const daysLeft = match ? 30 - Math.floor((new Date() - new Date(match.created)) / (1000 * 60 * 60 * 24)) : 0;
+  res.json({ valid, daysLeft: valid ? daysLeft : 0 });
+});
+
+app.get('/api/licenses', (req, res) => {
+  const licenses = loadLicenses();
+  const now = new Date();
+  const list = licenses.map(l => ({
+    email: l.email,
+    key: l.key,
+    created: l.created,
+    active: l.active !== false,
+    daysLeft: 30 - Math.floor((now - new Date(l.created)) / (1000 * 60 * 60 * 24)),
+    expired: Math.floor((now - new Date(l.created)) / (1000 * 60 * 60 * 24)) >= 30,
+  }));
+  res.json(list);
 });
 
 app.get('/', (req, res) => {
