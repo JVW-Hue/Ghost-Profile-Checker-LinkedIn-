@@ -127,7 +127,10 @@
       paypal.Buttons({
         createOrder: function() {
           document.getElementById('errorMsg').style.display = 'none';
-          return fetch('/api/create-order', { method: 'POST' }).then(r => r.json()).then(d => d.id);
+          return fetch('/api/create-order', { method: 'POST' }).then(function(r) { return r.json(); }).then(function(d) {
+            if (!d.id) throw new Error(d.error || 'Server error creating order');
+            return d.id;
+          });
         },
         onApprove: function(data) {
           document.getElementById('paypalButtonContainer').innerHTML = '<div style="text-align:center;padding:12px;"><div class="loading-spinner"></div><div style="margin-top:8px;font-size:13px;color:#6b7280;">Processing payment...</div></div>';
@@ -135,7 +138,7 @@
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ orderId: data.orderID })
-          }).then(r => r.json()).then(result => {
+          }).then(function(r) { return r.json(); }).then(function(result) {
             if (result.success && result.licenseKey) {
               document.getElementById('checkoutContainer').style.display = 'none';
               document.getElementById('successContainer').style.display = 'block';
@@ -146,9 +149,10 @@
             }
           });
         },
-        onError: function() {
-          document.getElementById('errorMsg').textContent = 'Payment failed. Please try again.';
+        onError: function(err) {
+          document.getElementById('errorMsg').textContent = 'Payment failed: ' + (err.message || 'Please try again.');
           document.getElementById('errorMsg').style.display = 'block';
+          console.error('PayPal error:', err);
         }
       }).render('#paypalButtonContainer');
     }
