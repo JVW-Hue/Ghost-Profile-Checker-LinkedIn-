@@ -55,7 +55,11 @@ function validateLicenseKey(key) {
   if (!match) return false;
   const data = `${timestamp}-${random}-${match.email}`;
   const expected = crypto.createHmac('sha256', SECRET_SALT).update(data).digest('hex').substring(0, 8);
-  return hmac === expected && match.active !== false;
+  if (hmac !== expected || match.active === false) return false;
+  const created = new Date(match.created);
+  const now = new Date();
+  const daysSinceCreation = Math.floor((now - created) / (1000 * 60 * 60 * 24));
+  return daysSinceCreation < 30;
 }
 
 async function getPayPalAccessToken() {
@@ -85,8 +89,8 @@ app.post('/api/create-order', async (req, res) => {
       body: JSON.stringify({
         intent: 'CAPTURE',
         purchase_units: [{
-          amount: { currency_code: 'USD', value: '9.99' },
-          description: 'Ghost Profile Checker - Premium License',
+          amount: { currency_code: 'USD', value: '2.99' },
+          description: 'Ghost Profile Checker - Premium (Monthly)',
         }],
       }),
     });

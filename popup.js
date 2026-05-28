@@ -368,7 +368,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             `<p>Profile detected: <strong>${profileData.name || 'Unknown'}</strong></p>` +
             `<p>Followers: <strong>${profileData.followers || 'N/A'}</strong></p>` +
             `<div class="upgrade-prompt">` +
-            `<p>Upgrade to <strong>Premium ($9.99)</strong> for full analysis including ghost score, activity check, engagement metrics, and more.</p>` +
+            `<p>Upgrade to <strong>Premium ($2.99/month)</strong> for full analysis including ghost score, activity check, engagement metrics, and more.</p>` +
             `<button id="inlineUpgradeBtn" class="btn-premium">Get Premium</button></div>`;
           loadingEl.style.display = 'none';
           freeResult.style.display = 'block';
