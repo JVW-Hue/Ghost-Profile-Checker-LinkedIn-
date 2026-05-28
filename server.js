@@ -145,6 +145,10 @@ app.get('/', (req, res) => {
   res.redirect('/payment.html');
 });
 
+app.get('/privacy', (req, res) => {
+  res.sendFile(path.join(__dirname, 'privacy.html'));
+});
+
 app.get('/payment.html', (req, res) => {
   const filePath = path.join(__dirname, 'payment.html');
   let html = fs.readFileSync(filePath, 'utf8');
