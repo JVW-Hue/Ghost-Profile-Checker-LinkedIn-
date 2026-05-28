@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: ghost-profile-checker
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+      - key: PAYPAL_MODE
+        value: sandbox
+      - key: LICENSE_SECRET_SALT
+        generateValue: true

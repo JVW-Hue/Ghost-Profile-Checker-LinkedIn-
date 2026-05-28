@@ -10,6 +10,20 @@
     <div class="header">
       <span class="logo">👻</span>
       <h1>Ghost Profile Checker</h1>
+      <span id="premiumBadge" class="premium-badge" style="display:none;">PREMIUM</span>
+    </div>
+
+    <div id="licenseSection" class="license-section">
+      <div id="licenseStatus" class="license-status"></div>
+      <div id="licenseInputGroup" class="license-input-group">
+        <input type="text" id="licenseKeyInput" placeholder="Enter premium license key" class="license-input" />
+        <button id="activateBtn" class="btn-small">Activate</button>
+      </div>
+      <button id="getPremiumBtn" class="btn-premium">Get Premium - $9.99</button>
+      <div id="licenseThanks" class="license-thanks" style="display:none;">
+        <span>Premium active</span>
+        <button id="deactivateBtn" class="btn-small btn-ghost">Deactivate</button>
+      </div>
     </div>
 
     <div id="profileInfo" class="profile-info" style="display:none;">
@@ -23,7 +37,13 @@
       <span>Analyzing profile...</span>
     </div>
 
-    <div id="resultContainer" class="results" style="display:none;">
+    <div id="freeResult" class="free-result" style="display:none;">
+      <div class="free-info">
+        <p>Profile detected. Upgrade to Premium for full analysis including ghost score, activity check, engagement metrics, and more.</p>
+      </div>
+    </div>
+
+    <div id="premiumResult" class="results" style="display:none;">
       <div class="score-section">
         <div class="score-label">Ghost Score</div>
         <div id="scoreValue" class="score">--</div>
@@ -34,11 +54,20 @@
         <div class="section-title">Analysis</div>
         <ul id="reasonsList"></ul>
       </div>
+
+      <div id="exportSection" class="export-section">
+        <button id="exportBtn" class="btn-secondary">Export Report</button>
+      </div>
     </div>
 
     <button id="refreshBtn" class="btn-primary">
       <span class="btn-icon">↻</span> Analyze Current Profile
     </button>
+
+    <div class="footer">
+      <span class="version">v1.0.0</span>
+      <a id="supportLink" href="#" class="support-link">Support</a>
+    </div>
   </div>
   <script src="popup.js"></script>
 </body>
