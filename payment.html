@@ -65,6 +65,15 @@
     .loading-spinner { display: inline-block; width: 20px; height: 20px; border: 3px solid #e5e7eb; border-top: 3px solid #6366f1; border-radius: 50%; animation: spin 0.8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .error-msg { color: #dc2626; font-size: 13px; text-align: center; margin-top: 8px; display: none; }
+    .guide { margin-top: 24px; background: #f9fafb; border-radius: 12px; padding: 24px; text-align: left; }
+    .guide h3 { font-size: 15px; color: #111827; margin-bottom: 16px; text-align: center; }
+    .step { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .step:last-child { margin-bottom: 0; }
+    .step-num { background: #6366f1; color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .step-content { font-size: 13px; color: #374151; line-height: 1.5; }
+    .step-content strong { color: #111827; }
+    .store-link { display: block; text-align: center; margin: 16px 0; padding: 12px; background: #eef2ff; border-radius: 8px; color: #6366f1; font-weight: 600; text-decoration: none; font-size: 14px; }
+    .store-link:hover { background: #e0e7ff; }
   </style>
 </head>
 <body>
@@ -108,6 +117,62 @@
       </div>
     </div>
   </div>
+
+    <div class="guide">
+      <h3>📋 How to Get Started</h3>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>Install the extension</strong><br>
+          Go to the <strong>Ghost Profile Checker</strong> page in your browser's extension store and click <strong>"Get"</strong> or <strong>"Add to Chrome"</strong>.
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>Open a LinkedIn profile</strong><br>
+          Navigate to any LinkedIn profile page (<strong>linkedin.com/in/...</strong>). The extension will automatically analyze the profile.
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>Check the result</strong><br>
+          Click the extension icon <strong>👻</strong> in your browser toolbar to see the analysis — profile name and follower count (free) or full ghost score (premium).
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>Upgrade to Premium</strong><br>
+          Click <strong>"Get Premium"</strong> inside the extension popup, pay <strong>$2.99/month</strong> via PayPal, and receive your license key.
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <strong>Activate your key</strong><br>
+          Copy the license key from the payment page, paste it into the extension's license field, and click <strong>"Activate"</strong>. Premium features unlock immediately.
+        </div>
+      </div>
+
+      <hr style="border:none;border-top:1px solid #e5e7eb;margin:16px 0;">
+
+      <p style="text-align:center;font-size:13px;color:#6b7280;">
+        Get the extension directly from the store:<br>
+        <a class="store-link" href="https://microsoftedge.microsoft.com/addons/detail/ghost-profile-checker/YOUR_EXTENSION_ID" target="_blank">
+          📎 Click here to install Ghost Profile Checker
+        </a>
+      </p>
+      <p style="text-align:center;font-size:12px;color:#9ca3af;margin-top:8px;">
+        Questions? Contact <strong>JVWcompany115@gmail.com</strong>
+      </p>
+    </div>
 
   <script>
     function copyKey() {
