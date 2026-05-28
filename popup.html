@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="popup.css">
+  <title>Ghost Profile Checker</title>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <span class="logo">👻</span>
+      <h1>Ghost Profile Checker</h1>
+    </div>
+
+    <div id="profileInfo" class="profile-info" style="display:none;">
+      <div id="profileName" class="profile-name"></div>
+      <div id="profileHeadline" class="profile-headline"></div>
+      <div id="profileMeta" class="profile-meta"></div>
+    </div>
+
+    <div id="loadingIndicator" class="loading">
+      <div class="spinner"></div>
+      <span>Analyzing profile...</span>
+    </div>
+
+    <div id="resultContainer" class="results" style="display:none;">
+      <div class="score-section">
+        <div class="score-label">Ghost Score</div>
+        <div id="scoreValue" class="score">--</div>
+        <div id="statusBadge" class="badge">Unknown</div>
+      </div>
+
+      <div class="details-section">
+        <div class="section-title">Analysis</div>
+        <ul id="reasonsList"></ul>
+      </div>
+    </div>
+
+    <button id="refreshBtn" class="btn-primary">
+      <span class="btn-icon">↻</span> Analyze Current Profile
+    </button>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
