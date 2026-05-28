@@ -137,6 +137,10 @@ app.post('/api/validate-key', (req, res) => {
   res.json({ valid: validateLicenseKey(key) });
 });
 
+app.get('/', (req, res) => {
+  res.redirect('/payment.html');
+});
+
 app.get('/payment.html', (req, res) => {
   const filePath = path.join(__dirname, 'payment.html');
   let html = fs.readFileSync(filePath, 'utf8');
