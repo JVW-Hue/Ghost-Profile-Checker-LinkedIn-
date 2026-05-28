@@ -1,4 +1,4 @@
-const LICENSE_SERVER = 'https://YOUR-APP.onrender.com';
+const LICENSE_SERVER = 'https://ghost-profile-checker-linkedin.onrender.com';
 const PAYMENT_PAGE_URL = LICENSE_SERVER + '/payment.html';
 const LICENSE_STORAGE_KEY = 'ghost_premium_license';
 
