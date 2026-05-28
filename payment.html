@@ -154,7 +154,9 @@
     }
 
     const script = document.createElement('script');
-    script.src = 'https://www.paypal.com/sdk/js?client-id={{PAYPAL_CLIENT_ID}}&currency=USD';
+    var cid = '{{PAYPAL_CLIENT_ID}}';
+    if (!cid || cid === '') cid = 'AcDZUa89Np2dUo4xLhqplpveteU_Gih_zXi4LFx_QIXjVOgwJsTthbheAqwJsxoSB-Kco_2QQNvQUPPi';
+    script.src = 'https://www.paypal.com/sdk/js?client-id=' + cid + '&currency=USD';
     script.onload = loadPayPalButton;
     script.onerror = function() {
       document.getElementById('paypalButtonContainer').innerHTML = '<div style="text-align:center;padding:12px;color:#dc2626;font-size:13px;">Could not load PayPal.</div>';

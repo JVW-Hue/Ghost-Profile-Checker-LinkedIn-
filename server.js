@@ -152,4 +152,5 @@ app.use(express.static(__dirname));
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Ghost Profile Checker server running on port ${PORT} (${PAYPAL_MODE})`);
+  console.log(`PayPal Client ID set: ${PAYPAL_CLIENT_ID ? 'YES (' + PAYPAL_CLIENT_ID.substring(0, 10) + '...)' : 'NO'}`);
 });
